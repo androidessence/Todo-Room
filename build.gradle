@@ -19,6 +19,14 @@ allprojects {
         jcenter()
         maven { url 'https://maven.google.com' }
     }
+
+    ext {
+        supportLibraryVersion = "25.3.1"
+        constraintLayoutVersion = "1.0.2"
+        roomLibraryVersion = "1.0.0-alpha1"
+        rxJavaVersion = "2.0.6"
+        rxAndroidVersion = "2.0.1"
+    }
 }
 
 task clean(type: Delete) {
