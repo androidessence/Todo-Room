@@ -47,6 +47,8 @@ class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter
 
             completedCheckBox?.setOnCheckedChangeListener { _, isChecked ->
                 tasks[adapterPosition].completed = isChecked
+
+                AppDatabase.getInMemoryDatabase(itemView.context).taskDao().update(tasks[adapterPosition])
             }
         }
     }

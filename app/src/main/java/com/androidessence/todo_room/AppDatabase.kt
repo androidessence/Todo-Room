@@ -9,7 +9,7 @@ import android.content.Context
 /**
  * Base Database class.
  */
-@Database(entities = arrayOf(Task::class), version = 1)
+@Database(entities = arrayOf(Task::class), version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDAO
 
