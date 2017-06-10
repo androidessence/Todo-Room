@@ -1,7 +1,7 @@
 package com.androidessence.todo_room
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import io.reactivex.Flowable
 
 /**
  * Interface for retrieving Task info.
@@ -9,10 +9,10 @@ import android.arch.persistence.room.*
 @Dao
 interface TaskDAO {
     @Query("SELECT * FROM task")
-    fun getAll(): LiveData<List<Task>>
+    fun getAll(): Flowable<List<Task>>
 
     @Query("SELECT * FROM task WHERE completed = :arg0")
-    fun getComplete(complete: Boolean): LiveData<List<Task>>
+    fun getTasksByCompletion(complete: Boolean): Flowable<List<Task>>
 
     @Insert
     fun insertAll(vararg tasks: Task)

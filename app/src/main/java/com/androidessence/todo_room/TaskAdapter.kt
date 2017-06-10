@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
-import io.reactivex.Flowable
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import java.lang.ref.WeakReference
 
 /**
  * Adapter to display a list of tasks.
@@ -25,7 +22,7 @@ class TaskAdapter(tasks: List<Task> = ArrayList()) : RecyclerView.Adapter<TaskAd
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TaskViewHolder {
         val context = parent?.context
         val view = LayoutInflater.from(context)?.inflate(R.layout.list_item_task, parent, false)
-        return TaskViewHolder(view)
+        return TaskViewHolder(view, this)
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder?, position: Int) {
@@ -36,7 +33,8 @@ class TaskAdapter(tasks: List<Task> = ArrayList()) : RecyclerView.Adapter<TaskAd
         return tasks.size
     }
 
-    inner class TaskViewHolder(view: View?) : RecyclerView.ViewHolder(view) {
+    class TaskViewHolder(view: View?, taskAdapter: TaskAdapter) : RecyclerView.ViewHolder(view) {
+        val adapter: WeakReference<TaskAdapter> = WeakReference(taskAdapter)
         val descriptionTextView = view?.findViewById(R.id.task_description) as? TextView
         val completedCheckBox = view?.findViewById(R.id.task_completed) as? CheckBox
 
@@ -45,7 +43,7 @@ class TaskAdapter(tasks: List<Task> = ArrayList()) : RecyclerView.Adapter<TaskAd
             completedCheckBox?.isChecked = task.completed
 
             completedCheckBox?.setOnCheckedChangeListener { _, isChecked ->
-                tasks[adapterPosition].completed = isChecked
+                adapter.get()?.tasks?.get(adapterPosition)?.completed = isChecked
 
                 //TODO: Update is b0rken
 //                Single.fromCallable { itemView.context.taskDao().update(tasks[adapterPosition]) }
@@ -53,5 +51,9 @@ class TaskAdapter(tasks: List<Task> = ArrayList()) : RecyclerView.Adapter<TaskAd
 //                        .subscribe()
             }
         }
+    }
+
+    companion object {
+        private val TAG = TaskAdapter::class.java.simpleName
     }
 }
