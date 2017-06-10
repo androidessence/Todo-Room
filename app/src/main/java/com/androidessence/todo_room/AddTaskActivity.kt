@@ -1,9 +1,9 @@
 package com.androidessence.todo_room
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
+
 
 class AddTaskActivity : AppCompatActivity() {
 
@@ -12,14 +12,15 @@ class AddTaskActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_task)
 
         val editText = findViewById(R.id.task_description) as TextView
-        val submit = findViewById(R.id.submit) as Button
+        val submit = findViewById(R.id.submit)
 
         submit.setOnClickListener {
-            if (!editText.text.toString().isEmpty()) {
-                val task = Task()
-                task.description = editText.text.toString()
+            val description = editText.text.toString()
 
-                AppDatabase.getInMemoryDatabase(this).taskDao().insertAll(task)
+            if (!description.isEmpty()) {
+                val task = Task(description)
+
+                taskDao().insertAll(task)
                 finish()
             }
         }

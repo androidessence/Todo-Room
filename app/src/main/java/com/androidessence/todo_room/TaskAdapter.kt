@@ -10,9 +10,9 @@ import android.widget.TextView
 /**
  * Adapter to display a list of tasks.
  */
-class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(tasks: List<Task> = ArrayList()) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
-    var tasks: MutableList<Task> = tasks
+    var tasks: List<Task> = tasks
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -32,11 +32,6 @@ class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter
         return tasks.size
     }
 
-    fun addTask(task: Task) {
-        tasks.add(task)
-        notifyDataSetChanged()
-    }
-
     inner class TaskViewHolder(view: View?) : RecyclerView.ViewHolder(view) {
         val descriptionTextView = view?.findViewById(R.id.task_description) as? TextView
         val completedCheckBox = view?.findViewById(R.id.task_completed) as? CheckBox
@@ -48,7 +43,7 @@ class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter
             completedCheckBox?.setOnCheckedChangeListener { _, isChecked ->
                 tasks[adapterPosition].completed = isChecked
 
-                AppDatabase.getInMemoryDatabase(itemView.context).taskDao().update(tasks[adapterPosition])
+                itemView.context.taskDao().update(tasks[adapterPosition])
             }
         }
     }

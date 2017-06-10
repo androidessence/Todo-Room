@@ -28,7 +28,7 @@ class TaskActivity : AppCompatActivity() {
         recyclerview.adapter = adapter
         recyclerview.layoutManager = layoutManager
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
+        val fab = findViewById(R.id.fab)
         fab.setOnClickListener {
             startActivity(Intent(this, AddTaskActivity::class.java))
         }
@@ -37,6 +37,6 @@ class TaskActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        adapter.tasks = AppDatabase.getInMemoryDatabase(this).taskDao().getAll().toMutableList()
+        adapter.tasks = taskDao().getAll()
     }
 }
