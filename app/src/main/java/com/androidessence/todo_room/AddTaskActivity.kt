@@ -3,6 +3,8 @@ package com.androidessence.todo_room
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 
 
 class AddTaskActivity : AppCompatActivity() {
@@ -20,7 +22,10 @@ class AddTaskActivity : AppCompatActivity() {
             if (!description.isEmpty()) {
                 val task = Task(description)
 
-                taskDao().insertAll(task)
+                Single.fromCallable { taskDao().insertAll(task) }
+                        .subscribeOn(Schedulers.newThread())
+                        .subscribe()
+
                 finish()
             }
         }

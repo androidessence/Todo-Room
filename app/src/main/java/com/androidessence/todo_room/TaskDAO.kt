@@ -1,5 +1,6 @@
 package com.androidessence.todo_room
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 
 /**
@@ -8,10 +9,10 @@ import android.arch.persistence.room.*
 @Dao
 interface TaskDAO {
     @Query("SELECT * FROM task")
-    fun getAll(): List<Task>
+    fun getAll(): LiveData<List<Task>>
 
     @Query("SELECT * FROM task WHERE completed = :arg0")
-    fun getComplete(complete: Boolean): List<Task>
+    fun getComplete(complete: Boolean): LiveData<List<Task>>
 
     @Insert
     fun insertAll(vararg tasks: Task)

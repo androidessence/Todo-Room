@@ -21,7 +21,6 @@ abstract class AppDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(context,
                         AppDatabase::class.java, "todo-list")
-                        .allowMainThreadQueries() //TODO: NO!
                         .build()
             }
 

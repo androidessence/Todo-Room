@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import io.reactivex.Flowable
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Adapter to display a list of tasks.
@@ -43,7 +47,10 @@ class TaskAdapter(tasks: List<Task> = ArrayList()) : RecyclerView.Adapter<TaskAd
             completedCheckBox?.setOnCheckedChangeListener { _, isChecked ->
                 tasks[adapterPosition].completed = isChecked
 
-                itemView.context.taskDao().update(tasks[adapterPosition])
+                //TODO: Update is b0rken
+//                Single.fromCallable { itemView.context.taskDao().update(tasks[adapterPosition]) }
+//                        .subscribeOn(Schedulers.newThread())
+//                        .subscribe()
             }
         }
     }
