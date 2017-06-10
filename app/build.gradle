@@ -33,14 +33,11 @@ dependencies {
     compile "com.android.support:design:$supportLibraryVersion"
     compile "android.arch.persistence.room:runtime:$roomLibraryVersion"
     compile "android.arch.persistence.room:rxjava2:$roomLibraryVersion"
-    compile "android.arch.lifecycle:extensions:$roomLibraryVersion"
     compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     testCompile 'junit:junit:4.12'
     annotationProcessor "android.arch.persistence.room:compiler:$roomLibraryVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$roomLibraryVersion"
     kapt "android.arch.persistence.room:compiler:$roomLibraryVersion"
-    kapt "android.arch.lifecycle:compiler:$roomLibraryVersion"
 }
 repositories {
     mavenCentral()
