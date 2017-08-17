@@ -23,7 +23,7 @@ allprojects {
     ext {
         supportLibraryVersion = "25.3.1"
         constraintLayoutVersion = "1.0.2"
-        roomLibraryVersion = "1.0.0-alpha1"
+        roomLibraryVersion = "1.0.0-alpha8"
         rxJavaVersion = "2.0.6"
         rxAndroidVersion = "2.0.1"
     }

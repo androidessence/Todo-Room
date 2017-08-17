@@ -48,7 +48,7 @@ class TaskAdapter(tasks: List<Task> = ArrayList()) : RecyclerView.Adapter<TaskAd
         private val disposable: Disposable = Observable.create(ObservableOnSubscribe<Task> { e -> emitter = e })
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.newThread())
-                .subscribe({ itemView.context.taskDao().update(it) })
+                .subscribe({ AppDatabase.getInstance().taskDao().update(it) })
 
         fun bindTask(task: Task) {
             descriptionTextView?.text = task.description

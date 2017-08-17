@@ -32,6 +32,8 @@ dependencies {
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile "com.android.support:design:$supportLibraryVersion"
     compile "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+    compile "android.arch.lifecycle:extensions:$roomLibraryVersion"
+    compile "android.arch.lifecycle:runtime:$roomLibraryVersion"
     compile "android.arch.persistence.room:runtime:$roomLibraryVersion"
     compile "android.arch.persistence.room:rxjava2:$roomLibraryVersion"
     compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
