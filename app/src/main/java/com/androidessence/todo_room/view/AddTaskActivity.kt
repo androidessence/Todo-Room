@@ -1,16 +1,15 @@
-package com.androidessence.todo_room
+package com.androidessence.todo_room.view
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
-import com.androidessence.todo_room.viewmodel.TaskViewModel
+import com.androidessence.todo_room.R
+import com.androidessence.todo_room.model.Task
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 
-class AddTaskActivity : AppCompatActivity() {
-    private val taskViewModel = TaskViewModel()
+class AddTaskActivity : CoreActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,6 +1,7 @@
-package com.androidessence.todo_room
+package com.androidessence.todo_room.data
 
 import android.arch.persistence.room.*
+import com.androidessence.todo_room.model.Task
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 
@@ -20,7 +21,4 @@ interface TaskDAO {
 
     @Update
     fun update(task: Task)
-
-    @Delete
-    fun delete(task: Task)
 }

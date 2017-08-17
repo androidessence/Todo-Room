@@ -1,4 +1,4 @@
-package com.androidessence.todo_room
+package com.androidessence.todo_room.model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

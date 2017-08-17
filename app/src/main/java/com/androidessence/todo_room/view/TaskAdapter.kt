@@ -1,4 +1,4 @@
-package com.androidessence.todo_room
+package com.androidessence.todo_room.view
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import com.androidessence.todo_room.R
+import com.androidessence.todo_room.data.AppDatabase
+import com.androidessence.todo_room.model.Task
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -34,14 +37,12 @@ class TaskAdapter(tasks: List<Task> = ArrayList()) : RecyclerView.Adapter<TaskAd
         holder?.bindTask(tasks[position])
     }
 
-    override fun getItemCount(): Int {
-        return tasks.size
-    }
+    override fun getItemCount(): Int = tasks.size
 
     class TaskViewHolder(view: View?, taskAdapter: TaskAdapter) : RecyclerView.ViewHolder(view) {
-        val adapter: WeakReference<TaskAdapter> = WeakReference(taskAdapter)
-        val descriptionTextView = view?.findViewById(R.id.task_description) as? TextView
-        val completedCheckBox = view?.findViewById(R.id.task_completed) as? CheckBox
+        private val adapter: WeakReference<TaskAdapter> = WeakReference(taskAdapter)
+        private val descriptionTextView = view?.findViewById(R.id.task_description) as? TextView
+        private val completedCheckBox = view?.findViewById(R.id.task_completed) as? CheckBox
 
         // https://stackoverflow.com/questions/44477568/calling-an-rxjava-single-in-kotlin-lambda
         private lateinit var emitter: ObservableEmitter<Task>
